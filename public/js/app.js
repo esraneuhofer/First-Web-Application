@@ -50,72 +50,130 @@ function changeSelection(){
 }
 
 function buildTable(foundMeals){
+	
 	var fleischSelect = [];
 	var selectionMeat={};
 	var selectionGarnish={};
 	var beilagen = [];
-
+	var selectAll=[];
 	
 	if($('#fish').is(":checked")){
 		fleischSelect.push("Fisch");
-		selectionMeat.fleisch = "Fisch";	
+		selectionMeat.fleisch = "Fisch";
+		selectAll.push("Fisch");	
 	}
 	if($('#beef').is(":checked")){
 		fleischSelect.push("Rind");
 		selectionMeat.fleisch = "Rind";
+		selectAll.push("Rind");
 	}
 	if($('#chicken').is(":checked")){
 		fleischSelect.push("Pute");
 		selectionMeat.fleisch = "Pute";
+		selectAll.push("Pute");
 	}
 	if($('#vegetarian').is(":checked")){
 		fleischSelect.push("Vegetarisch");
 		selectionMeat.fleisch = "Vegetarisch";
+		selectAll.push("Vegetarisch");
 	}
 
 	if($('#potato').is(":checked")){
-		fleischSelect.push("Kartoffel");	
-		selectionGarnish.beilage = "Kartoffel";	
+		beilagen.push("Kartoffel");	
+		selectionGarnish.beilage = "Kartoffel";
+		selectAll.push("Kartoffel");	
 	}
 	if($('#rice').is(":checked")){
-		fleischSelect.push("Reis");
+		beilagen.push("Reis");
 		selectionGarnish.beilage = "Reis";
+		selectAll.push("Reis");
 	}
 	if($('#pasta').is(":checked")){
-		fleischSelect.push("Nudel");
+		beilagen.push("Nudel");
 		selectionGarnish.beilage = "Nudel";
+		selectAll.push("Nudel");
 	}
-	alert(beilagen.length);
+	
 	$('#myTableBody').empty();
-	$.each(foundMeals, function (i, gericht){
-		var seen =[];
-		seen.push(gericht);
-		$('tr').each(function() {
-		    var txt = $(this).text();
-		    if (seen[txt])
-		        $(this).remove();
-		    else
-		        seen[txt] = true;
-		});
+		$.each(foundMeals, function (i, gericht){
+			var seen =[];
+			seen.push(gericht);
+			$('tr').each(function() {
+			    var txt = $(this).text();
+			    if (seen[txt])
+			        $(this).remove();
+			    else
+			        seen[txt] = true;
+			});
 
-		fleischSelect.map(function(eachWord){
-			// if(beilagen.length = 0){
+			fleischSelect.map(function(eachWord){
+
+				if(beilagen.length === 0){
+
+					if(gericht.fleisch === eachWord){
+
+					$('#myTableBody').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');
+					}	
+				}	
+			});	
+
+			beilagen.map(function(eachWord){
+
+				if(fleischSelect.length === 0){
+
+					if(gericht.beilage === eachWord){
+
+					$('#myTableBody').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');
+					}	
+				}	
+			});	
+			
+			selectAll.map(function(eachWord){
+					
+			
+			if($('#radioOne').is(':checked')){
+				if(selectionMeat.fleisch === gericht.fleisch && selectionGarnish.beilage === gericht.beilage){
+					$('#myTableBody').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');	
+				}
+
+			}else{
 				if(gericht.fleisch === eachWord || gericht.beilage === eachWord){
-				$('#myTableBody').append('<tr>'+
-				'<td>'+gericht.art+'</td>'+
-				'<td>'+gericht.name+'</td>'+
-				'<td>'+gericht.beilage+'</td>'+
-				'<td>'+gericht.zweiteKomponente+'</td>'+
-				'<td>'+gericht.fleisch+'</td>'+
-				'<td>'+gericht.komponenten+'</td>'+
-				'<td>'+gericht.preis+'</td>'+'</tr>');
+					$('#myTableBody').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');
+					}
 				
-			// }
-
 			}
 			
+
 		});	
-	});
+	});	
 }
 
 $( "#beef" ).change(function() {
@@ -141,9 +199,23 @@ $( "#pasta" ).change(function() {
 });
 
 
+function tablesorter(){
+	$(document).ready(function()  { 
+       $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} );  
+    }); 
+}
 
-
-
+function sortOutDouble (){
+	var seen =[];
+		seen.push(gericht);
+		$('tr').each(function() {
+		    var txt = $(this).text();
+		    if (seen[txt])
+		        $(this).remove();
+		    else
+		        seen[txt] = true;
+		});
+}
 
 
 
