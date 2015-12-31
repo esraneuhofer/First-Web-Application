@@ -21,56 +21,64 @@ app.post('/api/add',function(req, res){
 	});
 });
 
+app.get('/api/get/findByName/',function(req,res){
 
-// app.get('/api/get/:id',function(req,res){
+	var searchName =req.query;
+	db.gerichte.findOne({where:{name:searchName.name}}).then(function(foundMeal){
+		res.json(foundMeal);
+	},function(e){
+		res.json(e);
+	});
+});
 
-// 	db.gerichte.findById(req.params.id).then(function(foundMeal){
-// 			res.json(foundMeal);
-// 	},function(e){
-// 		res.json(e);
-// 	});
+app.get('/api/get/changeCW/',function(req,res){
 
-// });
+	var searchNameMonday =req.query.nameMontag;
+	var searchNameThuesday=req.query.nameDienstag;
+	var searchNameWednesday =req.query.nameMittwoch;
+	var searchNameThursday = req.query.nameDonnerstag;
+	var searchNameFriday =req.query.nameFreitag;
+	var usedInCalanderWeek = req.query.kalenderwoche;
+	var changedAttribute={};
+	changedAttribute.kalenderwoche = usedInCalanderWeek;
 
-// function buildDbQuery(reqQuery) {
-// 	if(!!reqQuery) {
-// 			if(!!reqQuery.fleisch) {
-// 		var fleischFilter = {
-// 			fleisch:{
-// 				$in:fleisch
-// 			}	
-// 		};
-// 	}
-	
-// 	if(!!reqQuery.beilagen) {
-// 		var beilagenFilter = {
-// 			beilage:{
-// 				$in:beilagen
-// 			}	
-// 		}
-// 	}
+	db.gerichte.findOne({where:{name:searchNameThuesday}}).then(function(foundMeal){
+		foundMeal.update(changedAttribute).then(function(changeCalenderWeekMeal){
+			res.json(changeCalenderWeekMeal);
+		})
+	},function(e){
+		res.json(e);
+	});
 
-// 	if(!!fleischFilter && !!beilagenFilter) {
-// 		return { $or: [fleischFilter, beilagenFilter]}
-// 	} else if (!!fleischFilter) { 
-// 		return fleischFilter;
-// 	} else if (!!beilagenFilter) {
-// 		return beilagenFilter;
-// 	}
-// 	}
-
-// 	return {};
-// }
-
-// app.get('/api/get/meals',function(req, res){
-// 	db.gerichte.findAll({where:buildDbQuery(req.dbQuery)}).then(function(foundMeals){
-// 		res.json(foundMeals);
-// 	},function(e){
-// 		//res.json(e);
-
-// 		res.json(buildDbQuery(req.dbQuery));
-// 	});
-// });
+	db.gerichte.findOne({where:{name:searchNameMonday}}).then(function(foundMeal){
+		foundMeal.update(changedAttribute).then(function(changeCalenderWeekMeal){
+			res.json(changeCalenderWeekMeal);
+		})
+	},function(e){
+		res.json(e);
+	});
+	db.gerichte.findOne({where:{name:searchNameWednesday}}).then(function(foundMeal){
+		foundMeal.update(changedAttribute).then(function(changeCalenderWeekMeal){
+			res.json(changeCalenderWeekMeal);
+		})
+	},function(e){
+		res.json(e);
+	});
+	db.gerichte.findOne({where:{name:searchNameThursday}}).then(function(foundMeal){
+		foundMeal.update(changedAttribute).then(function(changeCalenderWeekMeal){
+			res.json(changeCalenderWeekMeal);
+		})
+	},function(e){
+		res.json(e);
+	});
+	db.gerichte.findOne({where:{name:searchNameFriday}}).then(function(foundMeal){
+		foundMeal.update(changedAttribute).then(function(changeCalenderWeekMeal){
+			res.json(changeCalenderWeekMeal);
+		})
+	},function(e){
+		res.json(e);
+	});
+});
 
 app.get('/api/get/meals',function(req, res){
 	db.gerichte.findAll().then(function(foundMeals){

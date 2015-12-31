@@ -27,6 +27,9 @@ module.exports = function(sequelize, DataTypes){
 		},
 		preis:{
 			type:DataTypes.DECIMAL
+		},
+		kalenderwoche:{
+			type:DataTypes.DECIMAL
 		}
 	});
 };
