@@ -40,9 +40,13 @@ function createMeal(){
 }
 
 function changeSelection(){
+	var changeCalenderWeek = $('#kalenderwoche').val();
 	$.ajax({
 		type:'GET',
-		url:'api/get/meals',
+		data:{
+			week:changeCalenderWeek
+		},
+		url:'api/getCalender',
 		success:buildTable
 
 	});
@@ -193,12 +197,18 @@ function tablesorter(){
 	$("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	});
 }
-$( "#firstChoice" ).change(function() {
+function firstChoice(){
+	$( "#firstChoice" ).change(function() {
 	var chosenMeal =$( "#firstChoice" ).val();
+	var changeCalenderWeek = $('#kalenderwoche').val();
+
 	if (chosenMeal === "allMeals"){
 		$.ajax({
 			type:'GET',
-			url:'api/get/meals',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
 			success:function(foundMeals){
 					$('#myTableBody').empty();
 					$.each(foundMeals, function (i, gericht){
@@ -220,7 +230,10 @@ $( "#firstChoice" ).change(function() {
 		 
 		$.ajax({
 			type:'GET',
-			url:'api/get/meals',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
 			success:function(foundMeals){
 				$('#myTableBody').empty();
 				$.each(foundMeals, function (i, gericht){
@@ -243,7 +256,10 @@ $( "#firstChoice" ).change(function() {
 		
 		$.ajax({
 			type:'GET',
-			url:'api/get/meals',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
 			success:function(foundMeals){
 				$('#myTableBody').empty();
 				$.each(foundMeals, function (i, gericht){
@@ -265,7 +281,10 @@ $( "#firstChoice" ).change(function() {
 		
 		$.ajax({
 			type:'GET',
-			url:'api/get/meals',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
 			success:function(foundMeals){
 				$('#myTableBody').empty();
 				$.each(foundMeals, function (i, gericht){
@@ -287,7 +306,144 @@ $( "#firstChoice" ).change(function() {
 		
 		$.ajax({
 			type:'GET',
-			url:'api/get/meals',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+				$('#myTableBody').empty();
+				$.each(foundMeals, function (i, gericht){
+					if(gericht.art === "Dessert"){
+					$('#myTableBody').append('<tr>'+
+						'<td>'+gericht.art+'</td>'+
+						'<td>'+gericht.name+'</td>'+
+						'<td>'+gericht.beilage+'</td>'+
+						'<td>'+gericht.zweiteKomponente+'</td>'+
+						'<td>'+gericht.fleisch+'</td>'+
+						'<td>'+gericht.komponenten+'</td>'+
+						'<td>'+gericht.kalenderwoche+'</td>'+
+						'<td>'+gericht.preis+'</td>'+'</tr>');
+					}
+				});
+			}
+		});
+		} else if (chosenMeal==="autoSelect"){
+			$('#myTableBody').empty();
+		}  
+	});
+}
+$( "#firstChoice" ).change(function() {
+	var chosenMeal =$( "#firstChoice" ).val();
+	var changeCalenderWeek = $('#kalenderwoche').val();
+
+	if (chosenMeal === "allMeals"){
+		$.ajax({
+			type:'GET',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+					$('#myTableBody').empty();
+					$.each(foundMeals, function (i, gericht){
+						$('#myTableBody').append('<tr>'+
+							'<td>'+gericht.art+'</td>'+
+							'<td>'+gericht.name+'</td>'+
+							'<td>'+gericht.beilage+'</td>'+
+							'<td>'+gericht.zweiteKomponente+'</td>'+
+							'<td>'+gericht.fleisch+'</td>'+
+							'<td>'+gericht.komponenten+'</td>'+
+							'<td>'+gericht.kalenderwoche+'</td>'+
+							'<td>'+gericht.preis+'</td>'+'</tr>');
+						
+					});
+				}
+		});
+
+	}else if(chosenMeal === "mainSoup"){
+		 
+		$.ajax({
+			type:'GET',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+				$('#myTableBody').empty();
+				$.each(foundMeals, function (i, gericht){
+					if(gericht.art === "Suppe"){
+					$('#myTableBody').append('<tr>'+
+						'<td>'+gericht.art+'</td>'+
+						'<td>'+gericht.name+'</td>'+
+						'<td>'+gericht.beilage+'</td>'+
+						'<td>'+gericht.zweiteKomponente+'</td>'+
+						'<td>'+gericht.fleisch+'</td>'+
+						'<td>'+gericht.komponenten+'</td>'+
+						'<td>'+gericht.kalenderwoche+'</td>'+
+						'<td>'+gericht.preis+'</td>'+'</tr>');
+					}
+				});
+			}
+		});
+
+	}else if(chosenMeal=== "mainMeal"){
+		
+		$.ajax({
+			type:'GET',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+				$('#myTableBody').empty();
+				$.each(foundMeals, function (i, gericht){
+					if(gericht.art === "Hauptgericht"){
+					$('#myTableBody').append('<tr>'+
+						'<td>'+gericht.art+'</td>'+
+						'<td>'+gericht.name+'</td>'+
+						'<td>'+gericht.beilage+'</td>'+
+						'<td>'+gericht.zweiteKomponente+'</td>'+
+						'<td>'+gericht.fleisch+'</td>'+
+						'<td>'+gericht.komponenten+'</td>'+
+						'<td>'+gericht.kalenderwoche+'</td>'+
+						'<td>'+gericht.preis+'</td>'+'</tr>');
+					}
+				});
+			}
+		});
+	} else if(chosenMeal=== "salad"){
+		
+		$.ajax({
+			type:'GET',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+				$('#myTableBody').empty();
+				$.each(foundMeals, function (i, gericht){
+					if(gericht.art === "Salat"){
+					$('#myTableBody').append('<tr>'+
+						'<td>'+gericht.art+'</td>'+
+						'<td>'+gericht.name+'</td>'+
+						'<td>'+gericht.beilage+'</td>'+
+						'<td>'+gericht.zweiteKomponente+'</td>'+
+						'<td>'+gericht.fleisch+'</td>'+
+						'<td>'+gericht.komponenten+'</td>'+
+						'<td>'+gericht.kalenderwoche+'</td>'+
+						'<td>'+gericht.preis+'</td>'+'</tr>');
+					}
+				});
+			}
+		});
+	}  else if(chosenMeal=== "dessert"){
+		
+		$.ajax({
+			type:'GET',
+			data:{
+			week:changeCalenderWeek
+			},
+			url:'api/getCalender',
 			success:function(foundMeals){
 				$('#myTableBody').empty();
 				$.each(foundMeals, function (i, gericht){
@@ -343,8 +499,6 @@ function getMealByNameAndAdd (){
 		},
 		url:'/api/get/findByName',
 		success:function(gericht){
-			alert('Halo');
-			
 			var selectedDay = $("#dayChoice").val();
 					if(selectedDay === 'chooseDay'){
 						alert('Please Select Day Frau Dr. Prisco');
@@ -440,7 +594,7 @@ function changeCalenderWeekMenu(){
 	var nameInputHideThursday = $('#tableThursdayHide').text();
 	var nameInputHideFriday = $('#tableFridayHide').text();
 	var changeCalenderWeek=$('#mealPlanWeek').val();
-	alert(nameInputHideThuesday);
+	
 	$.ajax({
 		type:'GET',
 		data:
@@ -455,17 +609,147 @@ function changeCalenderWeekMenu(){
 		},
 		url:'/api/get/changeCW',
 		success:function(gericht){
-			
+			alert("Kalenderwochen aktualisiert");
 		}
 	});
-
 }
-
-
 
 $('#sendWeekPlan').click(function(){
 	changeCalenderWeekMenu();
 });
 
+$(document).ready(function(){
+	$('#kalenderwoche').focusout(function(){
+		$('#head').empty();
+		$('#head').append("Gerichtsuche für Kalenderwoche " +$(this).val());
+		changeSelection();
+		firstChoice();
+		
+	});
+});
+
+function sortByCalender(){
+	var changeCalenderWeek = $('#kalenderwoche').val();
+	$.ajax({
+		type:'GET',
+		data:{
+			week:changeCalenderWeek
+		},
+		url:'api/getCalender',
+		success:function(foundMeals){
+			$('#myTableBody').empty();
+			$.each(foundMeals, function (i, gericht){
+
+			var seen =[];
+			seen.push(gericht);
+			$('tr').each(function() {
+			    var txt = $(this).text();
+			    if (seen[txt])
+			        $(this).remove();
+			    else
+			        seen[txt] = true;
+			});
+				$('#myTableBody').append('<tr>'+
+						'<td>'+gericht.art+'</td>'+
+						'<td>'+gericht.name+'</td>'+
+						'<td>'+gericht.beilage+'</td>'+
+						'<td>'+gericht.zweiteKomponente+'</td>'+
+						'<td>'+gericht.fleisch+'</td>'+
+						'<td>'+gericht.komponenten+'</td>'+
+						'<td>'+gericht.kalenderwoche+'</td>'+
+						'<td>'+gericht.preis+'</td>'+'</tr>');	
+			});
+		},error:function(e){
+				alert("error");
+		}
+	});
+	
+}
+
+$('#test').click(function(){
+	sortByCalender();
+});
+
+function getMealForChange (){
+	var mealForChange = $('#choosenMeal').val();
+	$.ajax({
+		type:"GET",
+		data:{
+			name:mealForChange
+		},
+		url:"api/getForChange",
+		success:function(gericht){
+			$('#myTableBodySearchMealForChange').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.kalenderwoche+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');	
+		},error:function(){
+			alert("Something went wrong!Contact Esra");
+		}
+
+	})
+} 
+
+$(document).ready(function(){
+	$('#choosenMeal').focusout(function(){
+		getMealForChange();
+
+	});
+});
+
+$('#clickForChange').click(function(){
+	var meal =$('#choosenMeal').val();
+	var inputArt = $('#artChange').val();
+	var inputGericht = $('#gerichtChange').val();
+	var inputBeilage = $('#beilageChange').val();
+	var inputZweiteBeilage = $('zweiteBeilageChange').val();
+	var inputFleisch = $('fleischChange').val();
+	var inputKomponente = $('#komponentenChange').val();
+	var inputPreis = $('#preisChange').val();
+	var inputKalenderwoche = $('#kalenderWocheChange').val();
+
+	
+	$.ajax({
+			type:'GET',
+			data:{
+				search:meal,
+				art:inputArt,	
+				name:inputGericht,
+				beilage:inputBeilage,
+				zweiteBeilage:inputZweiteBeilage,
+				fleisch:inputFleisch,
+				komponenten:inputKomponente,
+				preis:inputPreis,
+				kalenderwoche:inputKalenderwoche
+
+			},
+			url:'api/changeMeal',
+			success:function(gericht){
+				$('#myTableBodyChanged').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.kalenderwoche+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');	
+
+			},error:function(){
+				alert("something went wrong");
+			}
+	});
+
+
+
+})
+	
+
+	
 
 
