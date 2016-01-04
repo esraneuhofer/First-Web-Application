@@ -1,0 +1,22 @@
+{
+  "name": "gerichte",
+  "homepage": "https://github.com/esraneuhofer/gerichte",
+  "authors": [
+    "Esra Neuhofer <esra.neuhofer@yahoo.de>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "commercial",
+  "ignore": [
+    "**/.*",
+    "server/node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tablesorter": "jquery.tablesorter#~2.25.0",
+    "jquery": "~2.1.4"
+  }
+}

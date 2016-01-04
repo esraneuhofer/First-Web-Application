@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>gerichtauswahl</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="/html/styleblue.css">
+	<link href="/html/style.css" type="text/css" rel="stylesheet">	
+	<link href="/html/typeaheadstyle.css" type="text/css" rel="stylesheet">
+	<link href="/html/navigationbar.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<ul>
+	  <li><a href="/">Gerichte finden</a></li>
+	  <li><a class="active" href="/all">Alle Gericht</a></li>
+	  <li><a class="active" href="/add">Gericht hinzufügen</a></li>
+	  <li><a href="/change">Gericht ändern</a></li>
+	  <li><a href="/createplan">Wochenpläne</a></li>
+	  
+	</ul>
+	<div>
+	<div id="searchAllMeals"><!-- Div Container for SearchMeals Input and Output-->
+		<div id="input" class="input"><!-- Input all search parameters-->
+			<p><b><u>Gerichtauswahl</u></b></p>
+
+			<input type="input" name="Kalenderwoche" id="kalenderwoche" placeholder="Gerichte für KW">	
+
+			<form>
+				<input type="checkbox" name="combination" id="radioOne">Eine Kombination<br>
+			</form>
+			
+			<p><b>Protein</b></p>
+			<input type="checkbox" name="beef" id="beef">Rind<br>
+			<input type="checkbox" name="chicken" id="chicken">Hühnchen<br>
+			<input type="checkbox" name="fish" id="fish" >Fisch<br>
+			<input type="checkbox" name="vegetarian" id="vegetarian">Vegetarisch<br>
+		
+			<p><b>Beilage</b></p>
+			<input type="checkbox" name="potato" id="potato" >Kartoffel<br>
+			<input type="checkbox" name="rice" id="rice" >Reis<br>
+			<input type="checkbox" name="pasta" id="pasta" >Nudeln<br>
+		</div>
+
+		<div id="output" class="output"> <!-- Output for all Meals found after search query-->
+			<div id="head"></div>
+			<table id="myTable" class="tablesorter"> 
+				  <thead>
+				    <tr>
+				      <th>Art</th>
+				      <th>Name</th>
+				      <th>Beilage</th>
+				      <th>Beilage</th>
+				      <th>Fleisch</th>
+				      <th>Komponenten</th>
+				      <th>Kalenderwoche</th>
+				      <th>Preis</th>
+				    </tr>
+				  </thead>
+				  <tbody id="myTableBody">
+				  </tbody>
+			</table>
+		</div>
+	</div>	
+	<div id="change"><!-- Div Container for ChangeMeal Input and Output-->
+		<div id="changeInput" class="changeInput">
+			<h4><u>Wochenplan erstellen</u></h4>
+				<select id="dayChoice">
+				  <option value="chooseDay" selected id="chooseDay" >Tag wählen</option>
+				  <option value="monday" id="monday">Montag</option>
+				  <option value="thuesday" id="thuesday">Dienstag</option>
+				  <option value="wednesday" id="wednesday">Mittwoch</option>
+				  <option value="thursday" id="thursday">Donnerstag</option>
+				  <option value="friday" id="friday">Freitag</option>
+				</select><br>
+
+			<div id="topTwo">
+				<input class="typeahead" type="text" id="nameOfMeal" placeholder="Name Gericht">
+			</div>
+
+			<input type="button" id="getInputMeal" value="Gericht zu Wochenplan">
+			<br><br>
+			<input class="inputText" type="input" id="mealPlanWeek" placeholder="Wochenplan für KW">
+			<input type="button" id="sendWeekPlan" value="Feritgstellen">
+		</div>
+
+	<div id="changeOutput" class="changeOutput">
+
+			<table id="myTableChange" class="tablesorter1"> 
+				  <thead>
+				    <tr>
+				      <th>Montag</th>
+				      <th>Dienstag</th>
+				      <th>Mittwoch</th>
+				      <th>Donnerstag</th>
+				      <th>Freitag</th>
+				    </tr>
+				  </thead>
+				  <tbody id="myTableBodyChange"><!-- Output Name and all Garnishes in concated String-->
+				  	<tr>
+					  	<td id="tableMonday"></td>
+					  	<td id="tableThuesday"></td>
+					  	<td id="tableWednesday"></td>
+					  	<td id="tableThursday"></td>
+					  	<td id="tableFriday"></td>
+				    </tr>
+				    <tr style="display:none"><!-- Created to fetch only Name from Database-->
+						<td id="tableMondayHide"></td>
+					  	<td id="tableThuesdayHide"></td>
+					  	<td id="tableWednesdayHide"></td>
+					  	<td id="tableThursdayHide"></td>
+					  	<td id="tableFridayHide"></td>
+				    </tr>
+				  </tbody>
+			</table>
+		</div>
+	</div>
+	<script type="text/javascript" src="/js/typeahead.bundle.js"></script>
+	<script type="text/javascript" src="/js/typeheadapp.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	
+</body>
+</html>
