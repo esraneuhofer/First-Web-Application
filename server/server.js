@@ -58,13 +58,13 @@ app.get('/api/changeMeal',function(req, res){
 });
 
 app.get('/api/getType',function(req, res){
-var type = req.query.type;
+	var type = req.query.type;
 
-db.gerichte.findAll({where:{art:type}}).then(function(foundMeals){
-	res.json(foundMeals);
-},function(e){
-	res.json(e);
-});
+	db.gerichte.findAll({where:{art:type}}).then(function(foundMeals){
+		res.json(foundMeals);
+	},function(e){
+		res.json(e);
+	});
 });
 
 app.get('/api/getForChange',function(req, res){
@@ -183,6 +183,7 @@ app.get('/api/get/meals',function(req, res){
 app.get('/add',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/addmeals.html'));
 });
+
 app.get('/prevmenu',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/createPlan.html'));
 });
@@ -196,7 +197,7 @@ app.get('/all',function(req, res){
 });
 
 app.use('/',function(req, res ){
-	res.sendFile('index.html',{root:'../public/html'});
+	res.sendFile('index.html',{root:'../'});
 });
 
 db.sequelize.sync().then(function() {
