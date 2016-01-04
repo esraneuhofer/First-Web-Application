@@ -2,7 +2,7 @@
   "name": "gerichte",
   "version": "1.0.0",
   "description": "gerichte",
-  "main": "index.js",
+  "main": "/../public/html/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
