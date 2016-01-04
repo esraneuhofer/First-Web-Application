@@ -2,7 +2,7 @@
   "name": "gerichte",
   "version": "1.0.0",
   "description": "gerichte",
-  "main": "server/server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +17,8 @@
     "socket.io": "^1.3.7",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3"
-  }
+  }, "engines": {
+        "node": "0.10.11",
+        "npm": "1.2.25"
+    } 
 }
