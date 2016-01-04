@@ -57,6 +57,15 @@ app.get('/api/changeMeal',function(req, res){
 	});
 });
 
+app.get('/api/getType',function(req, res){
+var type = req.query.type;
+
+db.gerichte.findAll({where:{art:type}}).then(function(foundMeals){
+	res.json(foundMeals);
+},function(e){
+	res.json(e);
+});
+});
 
 app.get('/api/getForChange',function(req, res){
 	var searchMealForChange = req.query.name;
@@ -174,9 +183,16 @@ app.get('/api/get/meals',function(req, res){
 app.get('/add',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/addmeals.html'));
 });
+app.get('/prevmenu',function(req, res){
+	res.sendFile(path.join(__dirname + '/../public/html/createPlan.html'));
+});
 
 app.get('/change',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/changeMeal.html'));
+});
+
+app.get('/all',function(req, res){
+	res.sendFile(path.join(__dirname + '/../public/html/allMeals.html'));
 });
 
 app.use('/',function(req, res ){

@@ -1,3 +1,70 @@
+$(document).ready(function(){
+	$.ajax({
+		type:"GET",
+		url:"api/get/meals",
+		success:function(foundMeals){
+			$.each(foundMeals,function(i,gericht){
+				$('#myTableBodyAllMeals').append('<tr>'+
+				'<td>'+gericht.art+'</td>'+
+				'<td>'+gericht.name+'</td>'+
+				'<td>'+gericht.beilage+'</td>'+
+				'<td>'+gericht.zweiteKomponente+'</td>'+
+				'<td>'+gericht.fleisch+'</td>'+
+				'<td>'+gericht.komponenten+'</td>'+
+				'<td>'+gericht.kalenderwoche+'</td>'+
+				'<td>'+gericht.preis+'</td>'+'</tr>');	
+			})	
+		}
+	}); 
+});
+$('#radioMain').click(function(){
+	var val = $('#radioMain').val();
+	radioButton(val);
+});	
+
+$('#radioSoup').click(function(){
+	var val = $('#radioSoup').val();
+	radioButton(val);
+});	
+$('#radioSalat').click(function(){
+	var val = $('#radioSalat').val();
+	radioButton(val);
+});	
+$('#radioDessert').click(function(){
+	var val = $('#radioDessert').val();
+	radioButton(val);
+});	
+
+function radioButton(value){
+	var valueOne =value;
+
+	$.ajax({
+		type:'GET',
+		data:{
+			type:valueOne
+		},
+		url:'api/getType',
+		success:function(foundMeals){
+			$('#myTableBodyAllMeals').empty();
+			$.each(foundMeals, function (i,gericht){
+				$('#myTableBodyAllMeals').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.kalenderwoche+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');
+			});
+		},error:function(){
+			alert('Please contact Esra')
+		}
+	});
+}	
+
+
+
 function addMeal(){
 	$.ajax({
 		url:'/api/add',
@@ -620,11 +687,32 @@ $('#sendWeekPlan').click(function(){
 
 $(document).ready(function(){
 	$('#kalenderwoche').focusout(function(){
+		var kalenderwoche = $(this).val();
 		$('#head').empty();
 		$('#head').append("Gerichtsuche für Kalenderwoche " +$(this).val());
-		changeSelection();
-		firstChoice();
-		
+		$.ajax({
+			type:'GET',
+			data:{
+				week:kalenderwoche
+			},
+			url:'api/getCalender',
+			success:function(foundMeals){
+				$('#myTableBody').empty();
+				$.each(foundMeals,function(i,gericht){
+				$('#myTableBody').append('<tr>'+
+				'<td>'+gericht.art+'</td>'+
+				'<td>'+gericht.name+'</td>'+
+				'<td>'+gericht.beilage+'</td>'+
+				'<td>'+gericht.zweiteKomponente+'</td>'+
+				'<td>'+gericht.fleisch+'</td>'+
+				'<td>'+gericht.komponenten+'</td>'+
+				'<td>'+gericht.kalenderwoche+'</td>'+
+				'<td>'+gericht.preis+'</td>'+'</tr>');	
+			})	
+			},error:function(){
+				alert('Error contact Esra Please');
+			}
+		});
 	});
 });
 
@@ -662,8 +750,7 @@ function sortByCalender(){
 		},error:function(e){
 				alert("error");
 		}
-	});
-	
+	});	
 }
 
 $('#test').click(function(){
@@ -679,7 +766,9 @@ function getMealForChange (){
 		},
 		url:"api/getForChange",
 		success:function(gericht){
-			$('#myTableBodySearchMealForChange').append('<tr>'+
+			if(gericht){
+				
+				$('#myTableBodySearchMealForChange').append('<tr>'+
 					'<td>'+gericht.art+'</td>'+
 					'<td>'+gericht.name+'</td>'+
 					'<td>'+gericht.beilage+'</td>'+
@@ -688,6 +777,10 @@ function getMealForChange (){
 					'<td>'+gericht.komponenten+'</td>'+
 					'<td>'+gericht.kalenderwoche+'</td>'+
 					'<td>'+gericht.preis+'</td>'+'</tr>');	
+			}else{
+				
+			}
+			
 		},error:function(){
 			alert("Something went wrong!Contact Esra");
 		}
@@ -698,7 +791,6 @@ function getMealForChange (){
 $(document).ready(function(){
 	$('#choosenMeal').focusout(function(){
 		getMealForChange();
-
 	});
 });
 
@@ -744,12 +836,11 @@ $('#clickForChange').click(function(){
 				alert("something went wrong");
 			}
 	});
-
-
-
 })
 	
-
+$('#resetButton').click(function(){
+	$('#myTableBodySearchMealForChange').empty();
+});
 	
 
 
