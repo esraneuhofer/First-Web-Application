@@ -197,7 +197,7 @@ app.get('/all',function(req, res){
 });
 
 app.use('/',function(req, res ){
-	res.sendFile('index.html',{root:'../'});
+	res.sendFile('index.html',{root:'../public/html'});
 });
 
 db.sequelize.sync().then(function() {
