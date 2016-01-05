@@ -7,7 +7,7 @@ var path = require('path');
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-app.use(express.static(__dirname+'/public'));
+app.use(express.static('../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -181,23 +181,23 @@ app.get('/api/get/meals',function(req, res){
 });
 
 app.get('/add',function(req, res){
-	res.sendFile(path.join(__dirname + '/public/html/addmeals.html'));
+	res.sendFile(path.join(__dirname + '/../public/html/addmeals.html'));
 });
 
 app.get('/prevmenu',function(req, res){
-	res.sendFile(path.join(__dirname + '/public/html/createPlan.html'));
+	res.sendFile(path.join(__dirname + '/../public/html/createPlan.html'));
 });
 
 app.get('/change',function(req, res){
-	res.sendFile(path.join(__dirname + '/public/html/changeMeal.html'));
+	res.sendFile(path.join(__dirname + '/../public/html/changeMeal.html'));
 });
 
 app.get('/all',function(req, res){
-	res.sendFile(path.join(__dirname + '/public/html/allMeals.html'));
+	res.sendFile(path.join(__dirname + '/../public/html/allMeals.html'));
 });
 
 app.use('/',function(req, res ){
-	res.sendFile(path.join(__dirname + '/public/html/index.html'));
+	res.sendFile('index.html',{root:'../public/html'});
 });
 
 db.sequelize.sync().then(function() {
