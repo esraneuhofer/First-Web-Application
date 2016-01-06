@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "engines" : { "node 4.2.2"} 
+   "engine": "node >= 4.2.2"
   },
   "author": "Esra Neuhofer",
   "license": "ISC",
