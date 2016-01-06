@@ -34,7 +34,7 @@ $('#radioDessert').click(function(){
 	var val = $('#radioDessert').val();
 	radioButton(val);
 });	
-
+/*commment*/
 function radioButton(value){
 	var valueOne =value;
 
@@ -62,8 +62,6 @@ function radioButton(value){
 		}
 	});
 }	
-
-
 
 function addMeal(){
 	$.ajax({
@@ -264,6 +262,7 @@ function tablesorter(){
 	$("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	});
 }
+
 function firstChoice(){
 	$( "#firstChoice" ).change(function() {
 	var chosenMeal =$( "#firstChoice" ).val();
@@ -399,6 +398,7 @@ function firstChoice(){
 		}  
 	});
 }
+
 $( "#firstChoice" ).change(function() {
 	var chosenMeal =$( "#firstChoice" ).val();
 	var changeCalenderWeek = $('#kalenderwoche').val();
