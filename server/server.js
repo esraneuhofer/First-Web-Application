@@ -196,9 +196,12 @@ app.get('/all',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/allMeals.html'));
 });
 
-app.use('/',function(req, res ){
-	res.sendFile('index.html',{root:'../public/html'});
+pp.get('/',function(req, res){
+	res.sendFile(path.join(__dirname + '/../public/html/index.html'));
 });
+// app.use('/',function(req, res ){
+// 	res.sendFile('index.html',{root:'../public/html'});
+// });
 
 db.sequelize.sync().then(function() {
 	app.listen(PORT, function() {
