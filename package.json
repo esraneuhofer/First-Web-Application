@@ -2,9 +2,9 @@
   "name": "gerichte",
   "version": "1.0.0",
   "description": "gerichte",
-  "main": "./server.js",
+  "main": "./server/server.js",
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./server/server.js"
   },
   "author": "Esra Neuhofer",
   "license": "ISC",
