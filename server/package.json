@@ -2,11 +2,10 @@
   "name": "gerichte",
   "version": "1.0.0",
   "description": "gerichte",
-  // "main": "./server.js",
+  "main": "./server.js",
   "scripts": {
     "start": "node ./server.js"
   },
-  "engines":{"node" : "4.2.2"},
   "author": "Esra Neuhofer",
   "license": "ISC",
   "dependencies": {
