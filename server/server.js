@@ -196,7 +196,7 @@ app.get('/all',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/allMeals.html'));
 });
 
-pp.get('/',function(req, res){
+app.get('/',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/index.html'));
 });
 // app.use('/',function(req, res ){
