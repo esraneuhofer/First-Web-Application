@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
-// var env = process.env.NODE_ENV || 'development';
-var env ='development';
+var env = process.env.NODE_ENV || 'development';
 var sequelize;
 
 if (env === 'production') {
@@ -18,4 +17,5 @@ var db ={};
 db.gerichte = sequelize.import(__dirname +'/models/gerichte.js');
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
 module.exports = db;
