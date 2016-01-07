@@ -206,7 +206,7 @@ app.get('/',function(req, res){
 // 	res.sendFile('index.html',{root:'../public/html'});
 // });
 
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync().then(function() {
 	app.listen(PORT, function() {
 		console.log('Express listening on port ' + PORT + '!');
 	});
