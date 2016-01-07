@@ -25,14 +25,14 @@ module.exports = function(sequelize, DataTypes){
 			type:DataTypes.STRING,
 			allowNull:true
 		},
-		preis:{
-			type:DataTypes.STRING,
- 			allowNull:true
-		},
-		kalenderwoche:{
-			type:DataTypes.STRING,
-			allowNull:true
-		}
+		// preis:{
+		// 	type:DataTypes.STRING,
+ 	// 		allowNull:true
+		// },
+		// kalenderwoche:{
+		// 	type:DataTypes.STRING,
+		// 	allowNull:true
+		// }
 	});
 	return user;
 };
