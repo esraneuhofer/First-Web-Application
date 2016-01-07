@@ -107,10 +107,11 @@ app.get('/api/getCalender',function(req, res){
 
 app.post('/api/add',function(req, res){
 
-	db.gerichte.create(req.body).then(function(addedMeal){
-		res.json(addedMeal);
-	},function(e){
+	db.gerichte.create(req.body).then(function (addedMeal){
+		res.json(addedMeal.toJSON());
+	},function (e){
 		res.json(e);
+		console.log("something went wrong");
 	});
 });
 
