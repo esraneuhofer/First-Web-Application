@@ -9,19 +9,19 @@ module.exports = function(sequelize, DataTypes){
 			allowNull:false,
 			unique : true
 		},
-		beilage:{
-			type:DataTypes.STRING,
-			allowNull:true
-		},
-		zweiteKomponente:{
-			type:DataTypes.STRING,
-			allowNull:true
-		},
 		fleisch:{
 			type:DataTypes.STRING,
 			allowNull:false
 		},
+		beilage:{
+			type:DataTypes.STRING,
+			allowNull:true
+		},
 		komponenten:{
+			type:DataTypes.STRING,
+			allowNull:true
+		},
+		zweiteKomponente:{
 			type:DataTypes.STRING,
 			allowNull:true
 		},
