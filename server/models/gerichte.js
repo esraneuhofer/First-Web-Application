@@ -26,10 +26,12 @@ module.exports = function(sequelize, DataTypes){
 			allowNull:true
 		},
 		preis:{
-			type:DataTypes.STRING
+			type:DataTypes.STRING,
+			allowNull:true
 		},
 		kalenderwoche:{
-			type:DataTypes.STRING
+			type:DataTypes.STRING,
+			allowNull:true
 		}
 	});
 	return user;
