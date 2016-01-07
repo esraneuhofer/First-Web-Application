@@ -795,6 +795,8 @@ $(document).ready(function(){
 	});
 });
 
+
+
 $('#clickForChange').click(function(){
 	var meal =$('#choosenMeal').val();
 	var inputArt = $('#artChange').val();
@@ -843,5 +845,20 @@ $('#resetButton').click(function(){
 	$('#myTableBodySearchMealForChange').empty();
 });
 	
+$('#clickForDelete').click(function(){
+	var mealForChange = $('#choosenMeal').val();
+	$.ajax({
+		type:'GET',
+		data:{
+			name:mealForChange
+		},
+		url:'api/deleteMeal',
+		success:function(foundMealToDelete){
+			window.location.reload(true);
+			alert("Meal:"+mealForChange+" was deleted from Database");
+		}
+	});
+});
+
 
 

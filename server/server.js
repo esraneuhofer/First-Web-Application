@@ -12,6 +12,17 @@ app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.get('/api/deleteMeal', function(req, res){
+	var name =req.query.name 
+	console.log(name);
+	db.gerichte.destroy({where:{name:name}}).then(function(rowsDeleted){
+		console.log(rowsDeleted);
+		res.json(rowsDeleted);
+	},function(e){
+		res.json(e);
+	});
+});
+
 app.get('/api/changeMeal',function(req, res){
 	var meal = req.query.search;
 	var type = req.query.art;
@@ -189,6 +200,10 @@ app.get('/add',function(req, res){
 
 app.get('/prevmenu',function(req, res){
 	res.sendFile(path.join(__dirname + '/../public/html/createPlan.html'));
+});
+
+app.get('/delete',function(req, res){
+	res.sendFile(path.join(__dirname + '/../public/html/deleteMeal.html'));
 });
 
 app.get('/change',function(req, res){
