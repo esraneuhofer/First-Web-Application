@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-	return sequelize.define('gerichte',{
+	var user = sequelize.define('gerichte',{
 		art:{
 			type:DataTypes.STRING,
 			allowNull:false
@@ -32,4 +32,5 @@ module.exports = function(sequelize, DataTypes){
 			type:DataTypes.DECIMAL
 		}
 	});
+	return user;
 };
