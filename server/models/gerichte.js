@@ -24,13 +24,14 @@ module.exports = function(sequelize, DataTypes){
 		zweiteKomponente:{
 			type:DataTypes.STRING,
 			allowNull:true
-		},
-		preis:{
-			type:DataTypes.STRING
-		},
-		kalenderwoche:{
-			type:DataTypes.STRING
 		}
+		// },
+		// preis:{
+		// 	type:DataTypes.STRING
+		// },
+		// kalenderwoche:{
+		// 	type:DataTypes.STRING
+		// }
 	});
 	return user;
 };
