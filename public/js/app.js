@@ -70,6 +70,7 @@ function addMeal(){
 		type:'POST',
 		success:function(addedMeal){
 			alert("Meal added to Database");
+			window.location.reload(true);
 		},
 		error:function(e){
 			alert("error");
