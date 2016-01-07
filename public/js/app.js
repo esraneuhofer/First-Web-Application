@@ -799,8 +799,8 @@ $('#clickForChange').click(function(){
 	var inputArt = $('#artChange').val();
 	var inputGericht = $('#gerichtChange').val();
 	var inputBeilage = $('#beilageChange').val();
-	var inputZweiteBeilage = $('zweiteBeilageChange').val();
-	var inputFleisch = $('fleischChange').val();
+	var inputZweiteBeilage = $('#zweiteBeilageChange').val();
+	var inputFleisch = $('#fleischChange').val();
 	var inputKomponente = $('#komponentenChange').val();
 	var inputPreis = $('#preisChange').val();
 	var inputKalenderwoche = $('#kalenderWocheChange').val();
