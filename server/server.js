@@ -108,6 +108,7 @@ app.get('/api/getCalender',function(req, res){
 app.post('/api/add',function(req, res){
 
 	db.gerichte.create(req.body).then(function (addedMeal){
+		console.log("arrived here");
 		res.json(addedMeal.toJSON());
 	},function (e){
 		res.json(e);
