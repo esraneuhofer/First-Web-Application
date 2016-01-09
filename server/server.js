@@ -103,7 +103,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 			where:{
 				kalenderwoche:{
-					$or:{$like:"",$between:[2,47]}
+					$or:{$like:"",$between:[num.toString(2),num.toString(47)]}
 			}}}).then(function(foundMeals){
 				res.json(foundMeals);
 			},function(e){
