@@ -93,17 +93,83 @@ app.get('/api/getForChange',function(req, res){
 app.get('/api/getCalender',function(req, res){
 	var calenderWeek = req.query.week;
 	var mealsFromCw = calenderWeek -5 ;
-	console.log(calenderWeek);
-	if(!calenderWeek){
+	
+	// db.gerichte.findAll({where:{kalenderwoche:""}}).then(function(foundMeals){
+	// 	res.json(foundMeals);
+	// },function(e){
+	// 	res.json(e);
+	// });
+	if(calenderWeek == 1){
+		db.gerichte.findAll({
+			where:{
+				kalenderwoche:{
+					$or:{$like:"",$between:[2,47]}
+			}}}).then(function(foundMeals){
+				res.json(foundMeals);
+			},function(e){
+				res.json(e);
+		});
+	}	
+	else if(calenderWeek ==2){
+		db.gerichte.findAll({
+		where:{
+			kalenderwoche:{
+				$or:{$like:"",$between:[3,48]}
+			}
+		}}).then(function(foundMeals){
+			res.json(foundMeals);
+		},function(e){
+			res.json(e);
+		});
+	}	
+	else if(calenderWeek ==3){
+		db.gerichte.findAll({
+		where:{
+			kalenderwoche:{
+				$or:{$like:"",$between:[4,49]}
+			}
+		}}).then(function(foundMeals){
+			res.json(foundMeals);
+		},function(e){
+			res.json(e);
+		});
+	}	
+	else if(calenderWeek ==4){
+		db.gerichte.findAll({
+		where:{
+			kalenderwoche:{
+				$or:{$like:"",$between:[5,50]}
+			}
+		}}).then(function(foundMeals){
+			res.json(foundMeals);
+		},function(e){
+			res.json(e);
+		});
+	}	
+	else if(calenderWeek ==5){
+		db.gerichte.findAll({
+		where:{
+			kalenderwoche:{
+				$or:{$like:"",$between:[6,51]}
+			}
+		}}).then(function(foundMeals){
+			res.json(foundMeals);
+		},function(e){
+			res.json(e);
+		});
+	}
+	else if(!calenderWeek){
 		db.gerichte.findAll().then(function(allMeals){
 			res.json(allMeals);
 		},function(e){
 
 		})
-	}else{
+	}
+	else if(calenderWeek >= 5){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
+				$gt:calenderWeek,
 				$lt:mealsFromCw
 			}
 		}
@@ -113,7 +179,9 @@ app.get('/api/getCalender',function(req, res){
 		},function(e){
 			res.json(e);
 		});
-	}	
+	}
+
+	
 });
 
 app.post('/api/add',function(req, res){
