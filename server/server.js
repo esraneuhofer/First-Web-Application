@@ -93,8 +93,9 @@ app.get('/api/getForChange',function(req, res){
 app.get('/api/getCalender',function(req, res){
 	var calenderWeek = req.query.week;
 	var mealsFromCw = calenderWeek -4 ;
-	var calenderWeekString = String.valueOf(calenderWeek);
-	var mealsFromCwString =String.valueOf(mealsFromCw);
+	var calenderWeekString = calenderWeek.toString();
+	var mealsFromCwString =mealsFromCw.toString();
+	console.log(mealsFromCwString);	
 	
 	// db.gerichte.findAll({where:{kalenderwoche:""}}).then(function(foundMeals){
 	// 	res.json(foundMeals);
@@ -171,7 +172,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
-				$notBetween:[mealsFromCw,calenderWeek]
+				$notBetween:[mealsFromCwString,calenderWeekString]
 			}
 		}
 		}).then(function(foundMeals){
