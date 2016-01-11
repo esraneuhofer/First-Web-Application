@@ -48,7 +48,7 @@ table, th, td {
 	text-align: center;
 	font-size: 15px;
 }
-#OutputAllMeals{
+.OutputAllMeals{
 	height: 900px;
 }
 #dropDown{
