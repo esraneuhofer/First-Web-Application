@@ -702,7 +702,7 @@ $(document).ready(function(){
 				$.each(foundMeals,function(i,gericht){
 					if(gericht.art == "Hauptgericht" || gericht.art == "Suppe"){
 
-						$('#myTableBody').append('<tr>'+
+					$('#myTableBody').append('<tr>'+
 					'<td>'+gericht.art+'</td>'+
 					'<td>'+gericht.name+'</td>'+
 					'<td>'+gericht.beilage+'</td>'+
