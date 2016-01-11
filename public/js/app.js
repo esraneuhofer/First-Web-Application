@@ -700,15 +700,19 @@ $(document).ready(function(){
 			success:function(foundMeals){
 				$('#myTableBody').empty();
 				$.each(foundMeals,function(i,gericht){
-				$('#myTableBody').append('<tr>'+
-				'<td>'+gericht.art+'</td>'+
-				'<td>'+gericht.name+'</td>'+
-				'<td>'+gericht.beilage+'</td>'+
-				'<td>'+gericht.zweiteKomponente+'</td>'+
-				'<td>'+gericht.fleisch+'</td>'+
-				'<td>'+gericht.komponenten+'</td>'+
-				'<td>'+gericht.kalenderwoche+'</td>'+
-				'<td>'+gericht.preis+'</td>'+'</tr>');	
+					if(gericht.art == "Hauptgericht" || gericht.art == "Suppe"){
+
+						$('#myTableBody').append('<tr>'+
+					'<td>'+gericht.art+'</td>'+
+					'<td>'+gericht.name+'</td>'+
+					'<td>'+gericht.beilage+'</td>'+
+					'<td>'+gericht.zweiteKomponente+'</td>'+
+					'<td>'+gericht.fleisch+'</td>'+
+					'<td>'+gericht.komponenten+'</td>'+
+					'<td>'+gericht.kalenderwoche+'</td>'+
+					'<td>'+gericht.preis+'</td>'+'</tr>');	
+					}
+					
 			})	
 			},error:function(){
 				alert('Error contact Esra Please');
