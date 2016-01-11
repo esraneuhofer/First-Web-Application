@@ -93,6 +93,8 @@ app.get('/api/getForChange',function(req, res){
 app.get('/api/getCalender',function(req, res){
 	var calenderWeek = req.query.week;
 	var mealsFromCw = calenderWeek -4 ;
+	var calenderWeekString = String.valueOf(calenderWeek);
+	var mealsFromCwString =String.valueOf(mealsFromCw);
 	
 	// db.gerichte.findAll({where:{kalenderwoche:""}}).then(function(foundMeals){
 	// 	res.json(foundMeals);
@@ -114,7 +116,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
-				$or:{$like:"",$between:[3,48]}
+				$or:{$like:"",$between:["3","48"]}
 			}
 		}}).then(function(foundMeals){
 			res.json(foundMeals);
@@ -126,7 +128,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
-				$or:{$like:"",$between:[4,49]}
+				$or:{$like:"",$between:["4","49"]}
 			}
 		}}).then(function(foundMeals){
 			res.json(foundMeals);
@@ -138,7 +140,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
-				$or:{$like:"",$between:[5,50]}
+				$or:{$like:"",$between:["5","50"]}
 			}
 		}}).then(function(foundMeals){
 			res.json(foundMeals);
@@ -150,7 +152,7 @@ app.get('/api/getCalender',function(req, res){
 		db.gerichte.findAll({
 		where:{
 			kalenderwoche:{
-				$or:{$like:"",$between:[6,51]}
+				$or:{$like:"",$between:["6","51"]}
 			}
 		}}).then(function(foundMeals){
 			res.json(foundMeals);
