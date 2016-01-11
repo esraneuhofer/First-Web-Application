@@ -24,7 +24,7 @@ p{
 	height: 300px;
 }
 
-.output, .changeOutput{
+.output, .changeOutput, #OutputAllMeals{
 	float: left;
 	width: 1110px;
 	height: 450px;
